@@ -5,3 +5,12 @@ const router = express.Router();
 
 // Get all tasks for the logged-in user
 router.get('/', getAllTasks)
+
+// Create a new task
+router.post('/', createNewTask)
+
+// Update a task
+router.put('/:id', updateTask)
+
+// Delete a task
+router.delete('/:id', deleteTask)
