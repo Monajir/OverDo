@@ -4,6 +4,7 @@ import todoRoutes from './routes/taskRoutes.js'
 import workRoutes from './routes/workRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import settingsRoutes from './routes/settingsRoutes.js'
+import reportRoutes from './routes/reportRoutes.js'
 import authMiddleware from './middleware/authMiddleware.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
@@ -47,4 +48,5 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 // Starting the server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
+
 })
