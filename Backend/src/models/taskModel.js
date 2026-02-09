@@ -2,6 +2,28 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+const attachmentSchema = new Schema({
+    filename: {
+        type: String,
+        required: true
+    },
+    url: {
+        type: String,
+        required: true
+    },
+    mimeType: {
+        type: String
+    },
+    size: {
+        type: Number
+    },
+    uploadedAt: {
+        type: Date,
+        default: Date.now
+    }
+}, { _id: false })
+
+
 const taskSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
@@ -44,6 +66,10 @@ const taskSchema = new Schema({
     pomodoroCompleted: {
         type: Number,
         default: 0
+    },
+    attachments: {
+        type: [attachmentSchema],
+        default: []
     }
 }, { timestamps: true })
 
