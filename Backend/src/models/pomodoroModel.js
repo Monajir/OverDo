@@ -16,6 +16,22 @@ const pomodoroSchema = new Schema({
             required: true
         },
 
+        // // Max pomodoro cycles required
+        // pomodoroCycles: {
+        //     type: Number,
+        //     required: true
+        // },
+        // // Pomodoros completed
+        // pomodoroCount: {
+        //     type: Number,
+        //     default: 0
+        // },
+
+        duration: {
+            type: Number, // Minutes
+            required: true
+        },
+
 }, { timestamps: true });
 
 export default mongoose.model('Pomodoro', pomodoroSchema);
