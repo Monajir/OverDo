@@ -2,6 +2,7 @@ import Task from '../models/taskModel.js'
 import Pomodoro from '../models/pomodoroModel.js'
 import User from '../models/userModel.js'
 import Work from '../models/workModel.js'
+import cloudinary from "../config/cloudinary.js";
 
 export async function getAllTasks(req, res) {
     try {
@@ -139,6 +140,9 @@ export async function completePomodoro(req, res) {
     try {
         const task = await Task.findOne({ _id: req.params.id, user: req.userId })
         const user = await User.findById(task.user).select('-password')
+
+        const duration = req.body.duration
+
         if (!task) {
             return res.status(404).json({ message: 'Task not found' })
         }
@@ -151,7 +155,7 @@ export async function completePomodoro(req, res) {
         const pomodoro = await Pomodoro.create({
             user: req.userId,
             task: task._id,
-            duration: task.pomodoroDuration || 25,
+            duration: duration || 25,
             startedAt: new Date(Date.now() - (25 * 60 * 1000)),
             endedAt: new Date(),
             completed: true
@@ -194,5 +198,76 @@ export async function completePomodoro(req, res) {
         res.status(200).json({ message: 'Pomodoro completed', pomodoro: pomodoro, task: task })
     } catch (err) {
         return res.status(500).json({ message: 'Failed to update pomodoro count' })
+    }
+}
+
+// Add and Delete Attachments
+export async function addAttachment(req, res) {
+    try {
+        const task = await Task.findOne({
+            _id: req.params.id,
+            user: req.userId
+        });
+
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+        if (!req.file) {
+            return res.status(400).json({ message: "No file uploaded" });
+        }
+
+        task.attachments.push({
+            filename: req.file.originalname,
+            url: req.file.path,
+            mimeType: req.file.mimetype,
+            size: req.file.size
+        });
+
+        await task.save();
+
+        res.status(201).json({
+            message: "File uploaded successfully",
+            task: task
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "File upload failed" });
+    }
+}
+
+export async function deleteAttachment(req, res) {
+    try {
+        const task = await Task.findOne({
+            _id: req.params.id,
+            user: req.userId
+        });
+
+        if (!task) {
+            return res.status(404).json({ message: "Task not found" });
+        }
+
+        const index = parseInt(req.params.index);
+
+        if (isNaN(index) || !task.attachments[index]) {
+            return res.status(400).json({ message: "Invalid attachment index" });
+        }
+
+        const attachment = task.attachments[index];
+
+        // Extract public_id from Cloudinary URL
+        const publicId = attachment.url
+            .split("/")
+            .slice(-2)
+            .join("/")
+            .split(".")[0];
+        await cloudinary.uploader.destroy(publicId);
+
+        task.attachments.splice(index, 1);
+        await task.save();
+
+        res.status(200).json({ message: "Attachment deleted successfully", task: task });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to delete attachment" });
     }
 }
