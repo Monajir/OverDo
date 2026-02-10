@@ -10,9 +10,16 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import "./cron/taskFailure.cron.js"
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 dotenv.config()
 const app = express()
+
+// Adding Static Files
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(cors({
     origin: 'http://localhost:5173',
