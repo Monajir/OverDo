@@ -25,8 +25,8 @@
                         <div style="position: relative;">
                             <span class="material-icons-round"
                                 style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 20px;">person_outline</span>
-                            <input type="text" id="username" class="input-field" placeholder="coolproductivitymaster"
-                                style="padding-left: 40px;" required>
+                            <input type="text" id="username" name="username" class="input-field"
+                                placeholder="coolproductivitymaster" style="padding-left: 40px;" required>
                         </div>
                     </div>
 
@@ -35,8 +35,8 @@
                         <div style="position: relative;">
                             <span class="material-icons-round"
                                 style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 20px;">mail_outline</span>
-                            <input type="email" id="email" class="input-field" placeholder="you@example.com"
-                                style="padding-left: 40px;" required>
+                            <input type="email" id="email" name="email" class="input-field"
+                                placeholder="you@example.com" style="padding-left: 40px;" required>
                         </div>
                     </div>
 
@@ -45,8 +45,8 @@
                         <div style="position: relative;">
                             <span class="material-icons-round"
                                 style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 20px;">lock_outline</span>
-                            <input type="password" id="password" class="input-field" placeholder="........"
-                                style="padding-left: 40px;" required>
+                            <input type="password" id="password" name="password" class="input-field"
+                                placeholder="........" style="padding-left: 40px;" required>
                             <span class="material-icons-round"
                                 style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); cursor: pointer;">visibility_off</span>
                         </div>
@@ -109,21 +109,31 @@
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        const res = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, email, password })
-        });
+        try {
+            const res = await fetch("/api/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, email, password })
+            });
 
-        if (!res.ok) {
-            alert("Signup failed");
-            return;
+            const contentType = res.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const data = await res.json();
+                if (!res.ok) {
+                    alert(data.message || data.error || "Signup failed");
+                } else {
+                    localStorage.setItem("token", data.token);
+                    window.location.href = "/dashboard.html";
+                }
+            } else {
+                const text = await res.text();
+                console.error("Non-JSON response:", text);
+                alert("Server error. Please try again later.");
+            }
+        } catch (err) {
+            console.error("Fetch error:", err);
+            alert("Network error or server is down.");
         }
-
-        const { token } = await res.json();
-        localStorage.setItem("token", token);
-
-        window.location.href = "/dashboard.html";
     });
 </script>
 

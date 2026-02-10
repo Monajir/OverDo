@@ -23,7 +23,7 @@
             <a href="settings.html" class="nav-icon-btn" title="Settings">
                 <span class="material-icons-round">settings</span>
             </a>
-            <a href="index.html" class="nav-icon-btn" title="Logout">
+            <a href="index.html" class="nav-icon-btn" id="logoutBtn" title="Logout">
                 <span class="material-icons-round">logout</span>
             </a>
         </div>
@@ -215,27 +215,27 @@
         (async function () {
             const token = localStorage.getItem("token");
             if (!token) {
-                window.location.href = "/login.html"; // protect page
+                window.location.href = "/index.html"; // protect page
                 return;
             }
 
             try {
                 // Fetch user info first
-                const userRes = await fetch("/api/auth/me", {
+                const userRes = await fetch("/api/user/me", {
                     headers: { Authorization: "Bearer " + token }
                 });
 
                 if (!userRes.ok) {
                     localStorage.removeItem("token");
-                    window.location.href = "/login.html";
+                    window.location.href = "/index.html";
                     return;
                 }
 
                 const user = await userRes.json();
                 document.getElementById("usernameDisplay").textContent = user.username || "User";
 
-                // Fetch todos
-                const todoRes = await fetch("/api/todo", {
+                // Fetch tasks
+                const todoRes = await fetch("/api/task", {
                     headers: { Authorization: "Bearer " + token }
                 });
 
@@ -256,9 +256,10 @@
 
 
         // Logout functionality
-        document.getElementById("logoutBtn").addEventListener("click", () => {
+        document.getElementById("logoutBtn").addEventListener("click", (e) => {
+            e.preventDefault();
             localStorage.removeItem("token");
-            window.location.href = "/login.html";
+            window.location.href = "/index.html";
         });
     </script>
     <script src="assets/js/main.js"></script>
