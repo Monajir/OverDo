@@ -17,9 +17,12 @@ dotenv.config()
 const app = express()
 
 // Adding Static Files
+// Get the file path from the URL of the current module
 const __filename = fileURLToPath(import.meta.url)
+
+// Get the directory name from the file path
 const __dirname = dirname(__filename)
-app.use(express.static(path.join(__dirname, '../public')))
+
 
 app.use(cors({
     origin: 'http://localhost:5173',
@@ -29,12 +32,15 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 
+// Static Files will all be served from this public directory
+app.use(express.static(path.join(__dirname, '../public')))
+
 app.get('/health', (req, res) => {
     res.status(200).send("ok")
 })
 
 app.get('/', (req, res) => {
-    res.send("ok")
+    res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
 // Routes
