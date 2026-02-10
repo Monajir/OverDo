@@ -3,8 +3,9 @@ import authRoutes from './routes/authRoutes.js'
 import todoRoutes from './routes/taskRoutes.js'
 import workRoutes from './routes/workRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import settingsRoutes from './routes/settingsRoutes.js'
 import reportRoutes from './routes/reportRoutes.js'
+import settingsRoutes from './routes/settingsRoutes.js'
+import messageRoutes from './routes/messageRoutes.js'
 import authMiddleware from './middleware/authMiddleware.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
@@ -49,7 +50,8 @@ app.use('/api/task', authMiddleware, todoRoutes)
 app.use('/api/work', authMiddleware, workRoutes)
 app.use('/api/settings', authMiddleware, settingsRoutes)
 app.use('/api/user', authMiddleware, userRoutes)
-app.use('/api/report', authMiddleware, reportRoutes)
+app.use("/api/report", authMiddleware, reportRoutes)
+app.use("/api/message", authMiddleware, messageRoutes)
 
 // Connecting to Database
 mongoose.connect(process.env.MONGODB_URI).then(() => {
