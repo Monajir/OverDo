@@ -5,7 +5,7 @@ import cloudinary from "../config/cloudinary.js";
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: "overdo_attachments",
+        folder: "overdo/tasks",
         allowed_formats: ["jpg", "png", "jpeg", "pdf", "txt", "docx"],
         resource_type: "auto",
     },

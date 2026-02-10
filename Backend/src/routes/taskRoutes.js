@@ -25,7 +25,7 @@ router.post('/:id/complete', completeTask)
 router.put('/:id/pomodoro', completePomodoro)
 
 // Attachments
-router.post('/:id/attachments', upload.single('file'), addAttachment)
-router.delete('/:id/attachments/:index', deleteAttachment)
+router.post('/:id/attachment', upload.single('file'), addAttachment)
+router.delete('/:id/attachment/:index', deleteAttachment)
 
 export default router
