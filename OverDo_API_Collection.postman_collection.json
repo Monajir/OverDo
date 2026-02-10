@@ -535,6 +535,35 @@
                     "response": []
                 }
             ]
+        },
+        {
+            "name": "Reports",
+            "item": [
+                {
+                    "name": "Get Weekly Report",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{authToken}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/report/weekly",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "report",
+                                "weekly"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
         }
     ],
     "event": [
