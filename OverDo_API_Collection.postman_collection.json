@@ -564,6 +564,34 @@
                     "response": []
                 }
             ]
+        },
+        {
+            "name": "Messages",
+            "item": [
+                {
+                    "name": "Get Messages",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{authToken}}",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/message",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "message"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ]
         }
     ],
     "event": [
