@@ -36,7 +36,7 @@ app.use('/api/task', authMiddleware, todoRoutes)
 app.use('/api/work', authMiddleware, workRoutes)
 app.use('/api/settings', authMiddleware, settingsRoutes)
 app.use('/api/user', authMiddleware, userRoutes)
-
+app.use('/api/report', authMiddleware, reportRoutes)
 
 // Connecting to Database
 mongoose.connect(process.env.MONGODB_URI).then(() => {
