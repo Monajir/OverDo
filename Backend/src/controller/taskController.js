@@ -17,7 +17,7 @@ export async function getAllTasks(req, res) {
 
 export async function createNewTask(req, res) {
     try {
-        const { title, description, priority, dueAt, workId, totalPomodoros } = req.body
+        let { title, description, priority, dueAt, workId, totalPomodoros } = req.body
 
         if (!workId) {
             const standalonework = await Work.findOne({
@@ -45,7 +45,7 @@ export async function createNewTask(req, res) {
         res.json(task)
     }
     catch (error) {
-        res.status(500).json({ message: 'Failed to create task' })
+        res.status(500).json({ message: error.message })
     }
 }
 

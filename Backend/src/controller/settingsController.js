@@ -6,7 +6,7 @@ export async function getSettings(req, res) {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.json(user.preferences ? { mood: user.preferences.reactionMode, defaultPomodoroSettings: user.preferences.pomodoroSettings } : { mood: 'friendly', defaultPomodoroSettings: { workDuration: 25, breakDuration: 5, longBreakDuration: 15, cyclesBeforeLongBreak: 4 } })
+        res.json(user.preferences);
     } catch (error) {
         res.status(500).json({ message: 'Failed to fetch settings' });
     }
@@ -14,14 +14,26 @@ export async function getSettings(req, res) {
 
 export async function updateSettings(req, res) {
     try {
-        const { mood, defaultPomodoroSettings } = req.body;
+        const { preferences } = req.body;
+
+        // Update specific fields within the preferences object
+        // preventing the overwrite of the entire object
+        const updateFields = {};
+        if (preferences) {
+            for (const [key, value] of Object.entries(preferences)) {
+                updateFields[`preferences.${key}`] = value;
+            }
+        }
+
         const user = await User.findByIdAndUpdate(
             req.userId,
-            { $set: { preferences: { reactionMode: mood, pomodoroSettings: defaultPomodoroSettings } } },
+            { $set: updateFields },
             { new: true, runValidators: true }
-        ).select('preferences');
-
-        res.json(user.preferences ? { mood: user.preferences.reactionMode, defaultPomodoroSettings: user.preferences.pomodoroSettings } : { mood: 'friendly', defaultPomodoroSettings: { workDuration: 25, breakDuration: 5, longBreakDuration: 15, cyclesBeforeLongBreak: 4 } });
+        );
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
     } catch (error) {
         res.status(500).json({ message: 'Failed to update settings' });
     }

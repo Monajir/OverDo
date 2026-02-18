@@ -11,7 +11,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="nav-brand">
             <div class="nav-brand-icon">⚡</div>
             <span>OverDO</span>
@@ -27,190 +27,12 @@
                 <span class="material-icons-round">logout</span>
             </a>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Main Dashboard -->
-    <div class="dashboard-container">
-        <!-- Column 1: Character & Stats -->
-        <div class="column-1">
-            <!-- Character Card -->
-            <div class="card text-center">
-                <div class="character-avatar green">
-                    <span class="material-icons-round" style="font-size: 64px;">face</span>
-                </div>
-                <div class="speech-bubble">
-                    <p id="character-dialogue">Keep it up! Miracles do happen.</p>
-                </div>
-            </div>
+    <div> Dashboard is under development!! </div>
 
-            <!-- Stats Card -->
-            <div class="card">
-                <div class="flex items-center" style="margin-bottom: 0.5rem;">
-                    <div class="level-badge">
-                        <span class="material-icons-round">emoji_events</span>
-                    </div>
-                    <div>
-                        <div style="font-weight: 700; color: #D35400;">Bronze Hustler</div>
-                        <div style="font-size: 0.85rem; color: var(--text-muted);">450 XP</div>
-                    </div>
-                </div>
-
-                <div class="flex justify-between" style="font-size: 0.75rem; color: var(--text-muted);">
-                    <span>Bronze</span>
-                    <span>Silver</span>
-                </div>
-                <div class="xp-bar-container">
-                    <div class="xp-bar-fill" style="width: 82%;"></div>
-                </div>
-                <div class="text-center" style="font-size: 0.8rem; color: var(--text-muted);">550 XP to Silver Achiever
-                </div>
-
-                <div class="stat-grid">
-                    <div class="stat-item">
-                        <div class="flex items-center gap-2"
-                            style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">
-                            <span class="material-icons-round" style="font-size: 16px;">check_circle</span>
-                            Tasks Done
-                        </div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">23</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="flex items-center gap-2"
-                            style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 4px;">
-                            <span class="material-icons-round" style="font-size: 16px;">timer</span>
-                            Pomodoros
-                        </div>
-                        <div style="font-size: 1.5rem; font-weight: 700;">45</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Column 2: Tasks -->
-        <div class="column-2">
-            <div class="card" style="height: 100%;">
-                <div class="card-header">
-                    <h3 class="card-title">Tasks</h3>
-                    <button class="btn btn-ghost" style="font-size: 0.9rem;">+ Cancel</button>
-                </div>
-
-                <div class="task-input-container">
-                    <div class="input-group">
-                        <label class="input-label">Task Title</label>
-                        <input type="text" id="newTaskInput" class="input-field" placeholder="What needs to be done?">
-                    </div>
-                    <div class="input-group">
-                        <label class="input-label">Deadline</label>
-                        <input type="date" class="input-field">
-                    </div>
-                    <button id="addTaskBtn" class="btn btn-primary w-full">Add Task</button>
-                </div>
-
-                <div class="task-list" id="taskList">
-                    <!-- Task Item 1 -->
-                    <div class="task-item">
-                        <div class="checkbox" onclick="this.classList.toggle('checked')">
-                            <span class="material-icons-round"
-                                style="font-size: 16px; color: white; display: none;">check</span>
-                        </div>
-                        <div class="task-content">
-                            <div class="flex justify-between items-start">
-                                <div class="task-title">Complete project proposal</div>
-                                <span class="xp-reward">+50 XP</span>
-                            </div>
-                            <div class="task-meta">
-                                <div>Write and submit the Q4 project...</div>
-                            </div>
-                            <div class="task-meta" style="margin-top: 8px;">
-                                <span class="flex items-center gap-2"><span class="material-icons-round"
-                                        style="font-size: 14px;">schedule</span> 2 days left</span>
-                                <span class="flex items-center gap-2"><span class="material-icons-round"
-                                        style="font-size: 14px;">event</span> Jan 21, 10:37 PM</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Task Item 2 -->
-                    <div class="task-item priority-high">
-                        <div class="checkbox" onclick="this.classList.toggle('checked')">
-                            <span class="material-icons-round"
-                                style="font-size: 16px; color: white; display: none;">check</span>
-                        </div>
-                        <div class="task-content">
-                            <div class="flex justify-between items-start">
-                                <div class="task-title">Review code changes</div>
-                                <span class="xp-reward">+30 XP</span>
-                            </div>
-                            <div class="task-meta">
-                                <div>Review PR #234 for the authenti...</div>
-                            </div>
-                            <div class="task-meta" style="margin-top: 8px;">
-                                <span class="flex items-center gap-2"><span class="material-icons-round"
-                                        style="font-size: 14px;">schedule</span> 1 day left</span>
-                                <span class="flex items-center gap-2"><span class="material-icons-round"
-                                        style="font-size: 14px;">event</span> Jan 20, 10:37 PM</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Task Item 3 (Completed) -->
-                    <div class="task-item completed" style="margin-top: 2rem;">
-                        <div class="checkbox checked">
-                            <span class="material-icons-round" style="font-size: 16px; color: white;">check</span>
-                        </div>
-                        <div class="task-content">
-                            <div class="flex justify-between items-start">
-                                <div class="task-title">Morning workout</div>
-                                <span class="xp-reward success">+25 XP</span>
-                            </div>
-                            <div class="task-meta" style="margin-top: 8px;">
-                                <span class="flex items-center gap-2"><span class="material-icons-round"
-                                        style="font-size: 14px;">check_circle</span> Completed about 2 hours ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Column 3: Timer -->
-        <div class="column-3 timer-column">
-            <div class="card text-center" style="position: sticky; top: 100px;">
-                <h3 class="card-title">Pomodoro Timer</h3>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Stay focused!</p>
-
-                <div class="timer-display">
-                    <div class="timer-circle-bg"></div>
-                    <!-- Using SVG for better circle progress control usually, but following simple CSS for now -->
-                    <svg width="220" height="220" style="position: absolute; transform: rotate(-90deg);">
-                        <circle cx="110" cy="110" r="100" stroke="#F0F0F0" stroke-width="10" fill="none"></circle>
-                        <circle id="timerProgress" cx="110" cy="110" r="100" stroke="#FF6B35" stroke-width="10"
-                            fill="none" stroke-dasharray="628" stroke-dashoffset="100"></circle>
-                    </svg>
-                    <div class="time-text" id="timeDisplay">24:57</div>
-                    <div style="position: absolute; bottom: 60px; font-size: 0.9rem; color: var(--text-muted);">0%
-                        complete</div>
-                </div>
-
-                <div class="timer-controls">
-                    <button id="timerToggle" class="btn btn-ghost" style="border: 2px solid #ddd; padding: 12px 32px;">
-                        <span class="material-icons-round" style="margin-right: 8px;">pause</span> Pause
-                    </button>
-                    <button id="timerReset" class="btn"
-                        style="background-color: #EF5350; color: white; padding: 12px 24px; display: none;">
-                        <span class="material-icons-round" style="margin-right: 8px;">close</span> Abandon
-                    </button>
-                </div>
-
-                <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-muted); padding: 0 1rem;">
-                    25-minute focus sessions<br>
-                    Complete sessions to earn XP and rank up!
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
+    <!-- <script>
 
         (async function () {
             const token = localStorage.getItem("token");
@@ -262,7 +84,7 @@
             window.location.href = "/index.html";
         });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script> -->
 </body>
 
 </html>
