@@ -1,0 +1,247 @@
+/* ================================
+   Authentication Page Styles (Dark)
+   ================================ */
+
+.auth-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background: radial-gradient(circle at top,
+            hsl(220 30% 18%),
+            hsl(220 35% 10%));
+    color: hsl(210 20% 92%);
+}
+
+/* Panels */
+
+.auth-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-panel.promotional {
+    text-align: center;
+    color: white;
+}
+
+/* Promotional Variants */
+
+.auth-panel.promotional.orange {
+    background: linear-gradient(135deg,
+            hsl(28 90% 55%),
+            hsl(20 90% 45%));
+}
+
+.auth-panel.promotional.purple {
+    background: linear-gradient(135deg,
+            hsl(265 75% 60%),
+            hsl(255 80% 55%));
+}
+
+.auth-panel.promotional::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left,
+            rgba(255, 255, 255, 0.15),
+            transparent 60%);
+    pointer-events: none;
+}
+
+
+/* Form Container */
+
+.auth-form-container {
+    max-width: 420px;
+    width: 100%;
+    background: hsl(220 25% 14%);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px hsl(220 20% 22%);
+}
+
+/* Logo */
+
+.brand-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.brand-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg,
+            hsl(265 75% 60%),
+            hsl(200 90% 55%));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.brand-name {
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.tagline {
+    font-size: 1.05rem;
+    opacity: 0.85;
+    max-width: 320px;
+    line-height: 1.6;
+}
+
+/* Headers */
+
+.auth-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.auth-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.auth-subtitle {
+    font-size: 0.95rem;
+    color: hsl(210 15% 70%);
+}
+
+/* Links */
+
+.link {
+    color: hsl(200 90% 60%);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Inputs */
+
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: hsl(210 15% 75%);
+}
+
+.input-field {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: hsl(220 25% 18%);
+    border: 1px solid hsl(220 20% 26%);
+    color: hsl(210 20% 92%);
+    transition: 200ms ease;
+}
+
+.input-field::placeholder {
+    color: hsl(210 10% 55%);
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: hsl(200 90% 55%);
+    box-shadow: 0 0 0 3px hsl(200 90% 55% / 0.25);
+    background: hsl(220 25% 20%);
+}
+
+/* Buttons */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 200ms ease;
+    border: none;
+}
+
+/* Primary (Sky Blue – matches novice) */
+
+.btn-primary {
+    background: linear-gradient(135deg,
+            hsl(200 90% 55%),
+            hsl(190 85% 50%));
+    color: white;
+    box-shadow: 0 10px 30px hsl(200 90% 55% / 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px hsl(200 90% 55% / 0.45);
+}
+
+/* Purple (Legend preview) */
+
+.btn-purple {
+    background: linear-gradient(135deg,
+            hsl(265 75% 60%),
+            hsl(255 80% 55%));
+    color: white;
+    box-shadow: 0 10px 30px hsl(265 75% 60% / 0.35);
+}
+
+.btn-purple:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px hsl(265 75% 60% / 0.45);
+}
+
+/* Icons */
+
+.material-icons-round {
+    font-family: 'Material Icons Round';
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Floating Animation */
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.float-anim {
+    animation: float 3s ease-in-out infinite;
+}
