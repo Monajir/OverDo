@@ -177,11 +177,11 @@ stateDiagram-v2
 ```mermaid
 graph TD
     A[App Entry] --> B{Has Token?}
-    B -->|No| C[/login]
+    B -->|No| C["/login"]
     B -->|Yes| D{Verify via /user/me}
-    D -->|Valid| E[/ Dashboard]
+    D -->|Valid| E["/Dashboard"]
     D -->|Invalid| C
-    C --> F[/signup]
+    C --> F["/signup"]
     F --> C
 ```
 
